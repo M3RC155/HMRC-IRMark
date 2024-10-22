@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:dsig="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:gt="http://www.govtalk.gov.uk/CM/envelope">
+	<xsl:output method="xml" indent="yes"/>
+
+	<xsl:template match="/">
+		<dsig:Transforms>
+			<dsig:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116">
+				<dsig:XPath>
+					(count(ancestor-or-self::node()|/gt:GovTalkMessage/gt:Body)=count(ancestor-or-self::node()))
+					and (count(ancestor-or-self::node()|/gt:GovTalkMessage/gt:Body/*[name()='IRenvelope']/*[name()='IRheader']/*[name()='IRmark'])!=count(ancestor-or-self::node()))
+				</dsig:XPath>
+			</dsig:Transform>
+			<dsig:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+		</dsig:Transforms>
+	</xsl:template>
+</xsl:stylesheet>
