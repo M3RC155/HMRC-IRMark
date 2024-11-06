@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.XPath;
 
 namespace HMRC.IRMark.Generator
 {
@@ -31,30 +31,43 @@ namespace HMRC.IRMark.Generator
             <dsig:Transform Algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments'/>
         </dsig:Transforms>";
 
-        //private string transformStr => File.ReadAllText("");
-        private byte[] transformBytes => File.ReadAllBytes("");
+        //private string transformStr => File.ReadAllText("C:\Users\ivant\source\repos\HMRC-IRMark\IRMark-Generator\Test\stylesheet.xml");
+        private byte[] transformBytes => File.ReadAllBytes("C:\\Users\\ivant\\source\\repos\\HMRC-IRMark\\IRMark-Generator\\Test\\stylesheet.xml");
 
         public IrMarkGenerator(string xml)
         {
             _originalDoc = Encoding.UTF8.GetBytes(xml);
-            _document = new XmlDocument();
+            _document = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
             _document.LoadXml(xml);
         }
 
         public IrMarkGenerator(byte[] xml)
         {
             _originalDoc = xml;
-            _document = new XmlDocument();
+            _document = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
             _document.Load(new MemoryStream(xml));
         }
 
         public async Task<IrMarkResult> EmbedIrMarkAsync()
         {
-            XmlDocument xmlDocument = new XmlDocument();
+            XmlDocument xmlDocument = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
             xmlDocument.Load(new MemoryStream(_originalDoc));
-            TransformDocument();
             XmlDocument body = PrepareXMLBody(xmlDocument);
             string irmark = await GenerateIrMarkAsync(body);
+            //var test = GetMarkBytes();
+            if (irmark != "MxZc6ztT3R6ebwb0RIJwbEVFNZ8=")//F5iCKO/4idH0YwLKsSIYTZFmAAI=
+            {
+                Console.WriteLine("irmark");
+            }
             SetIrMark(irmark);
             MemoryStream stream = new MemoryStream();
             _document.Save(stream);
@@ -100,52 +113,93 @@ namespace HMRC.IRMark.Generator
             string result = string.Empty;
             XmlDsigC14NTransform c14N = new XmlDsigC14NTransform();
             c14N.LoadInput(xmlDocument);
+            var bytes = c14N.GetDigestedOutput(SHA1.Create());
+            result = Convert.ToBase64String(bytes);//MxZc6ztT3R6ebwb0RIJwbEVFNZ8=
 
             using (MemoryStream stream = (MemoryStream)c14N.GetOutput())
             {
                 SHA1 sha1 = SHA1.Create();
+                //var tempdoc = new XmlDocument 
+                //{
+                //    PreserveWhitespace = true,
+                //};
+                //tempdoc.Load(stream);
+                var te = sha1.ComputeHash(stream.ToArray());
                 byte[] hashBytes = await sha1.ComputeHashAsync(stream);
                 if (hashBytes.Length == 20)
                 {
-                    result = Convert.ToBase64String(hashBytes);
+                    var te2 = Convert.ToBase64String(te);
+                    result = Convert.ToBase64String(hashBytes);//2jmj7l5rSw0yVb/vlWAYkK/YBwk=
                 }
             }
 
-            return result;
+           return result;
         }
 
-        public string TransformDocument()
+        private void test()
         {
-            try
-            {
-                var document = new XPathDocument(new MemoryStream(_originalDoc));
-                //var style = new XPathDocument(new MemoryStream(transformBytes));
-                //var document = new XmlDocument();
-                //document.Load(new MemoryStream(_originalDoc));
-                var style = new XmlDocument();
-                style.LoadXml(transformStr);
-
-                XmlDsigXPathTransform transform = new XmlDsigXPathTransform();
-                transform.LoadInput(document);
-                transform.LoadInnerXml(style.SelectNodes("//dsig:XPath"));
-                StringWriter writer = new StringWriter();
-                //XmlReader xmlReadB = XmlReader.Create(new MemoryStream(_originalDoc));//new XmlTextReader(new StringReader(document.DocumentElement.OuterXml));
-                //transform.Transform(document, null, writer);
-                var out1 = transform.GetOutput();
-                var out2 = transform.GetXml();
-                var res = writer.ToString();
-                return res;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            XmlDocument xmlDocument = new XmlDocument();
         }
+
+        private string GetMarkBytes()
+        {
+
+            XmlDocument doc = new XmlDocument();
+            //doc.Load(new MemoryStream(Encoding.UTF8.GetBytes(transformStr)));
+            doc.Load(new MemoryStream(transformBytes));
+            var nsmgr = new XmlNamespaceManager(doc.NameTable);
+            nsmgr.AddNamespace("xsl", "http://www.w3.org/1999/XSL/Transform");
+            nsmgr.AddNamespace("dsig", "http://www.w3.org/2000/09/xmldsig#");
+
+            XmlDsigXPathTransform xpathTransform = new XmlDsigXPathTransform();
+            var xpathNodes = doc.SelectNodes("//dsig:XPath", nsmgr);
+            xpathTransform.LoadInnerXml(xpathNodes);
+
+            XmlDsigC14NTransform c14nTransform = new XmlDsigC14NTransform();
+            var c14nNodes = doc.SelectNodes("//dsig:Transform", nsmgr);
+            c14nTransform.LoadInnerXml(c14nNodes);
+
+            MemoryStream ms = new MemoryStream(_originalDoc);
+            ms.Position = 0;
+
+            byte[] transformedBytes = PerformTransforms(ms, xpathTransform);
+
+            Console.WriteLine("\noutput = \n" + Encoding.UTF8.GetString(transformedBytes));
+
+            using (SHA1 sha = SHA1.Create())
+            {
+                sha.TransformBlock(transformedBytes, 0, transformedBytes.Length, null, 0);
+                sha.TransformFinalBlock([], 0, 0);
+                return Convert.ToBase64String(sha.Hash);
+            }
+        }
+
+        private byte[] PerformTransforms(MemoryStream input, Transform transform)
+        {
+            transform.LoadInput(input);
+            var output = transform.GetXml();
+            using (var memoryStream = new MemoryStream())
+            {
+                var serializer = new DataContractJsonSerializer(output.GetType());
+                serializer.WriteObject(memoryStream, output);
+                return memoryStream.ToArray();
+            }
+        }
+
+        //private byte[] PerformTransforms(MemoryStream input, params Transform[] transforms)
+        //{
+        //    var result = input;
+        //    foreach (var transform in transforms)
+        //    {
+        //        transform.LoadInput(result);
+        //        result = transform.GetOutput() as MemoryStream;
+        //    }
+        //    return result.ToArray();
+        //}
 
         private static XmlDocument PrepareXMLBody(XmlDocument document)
         {
-            XmlElement GovTalkMessageNode = null;
+            XmlNode GovTalkMessageNode = null;
             List<XmlAttribute> attributes = new List<XmlAttribute>();
             foreach (XmlNode node in document.ChildNodes)
             {
@@ -156,35 +210,33 @@ namespace HMRC.IRMark.Generator
                 }
                 if (node.Name == "GovTalkMessage")
                 {
-                    GovTalkMessageNode = node as XmlElement;
+                    GovTalkMessageNode = node;
                 }
             }
 
             if (GovTalkMessageNode != null)
             {
-                XmlElement body = null;
-
-                body = GovTalkMessageNode.ChildNodes
-                        .Cast<XmlElement>()
+                var body = GovTalkMessageNode.ChildNodes
+                        .Cast<XmlNode>()
                         .FirstOrDefault(x => x.Name == "Body");
-
+                 
                 if (body != null)
                 {
                     foreach (XmlAttribute attribute in attributes)
                     {
-                        body.SetAttribute(attribute.Name, attribute.Value);
+                        ((XmlElement)body).SetAttribute(attribute.Name, attribute.Value);
                     }
 
                     var IRenvelope = body.ChildNodes
-                            .Cast<XmlElement>()
-                            .FirstOrDefault(x => x.Name == "IRenvelope");
+                        .Cast<XmlNode>()
+                        .FirstOrDefault(x => x.Name == "IRenvelope");
 
                     var IRheader = IRenvelope?.ChildNodes
-                        .Cast<XmlElement>()
+                        .Cast<XmlNode>()
                         .FirstOrDefault(x => x.Name == "IRheader");
 
                     var IRmark = IRheader?.ChildNodes
-                        .Cast<XmlElement>()
+                        .Cast<XmlNode>()
                         .FirstOrDefault(x => x.Name == "IRmark");
 
                     IRheader?.RemoveChild(IRmark);
@@ -192,9 +244,12 @@ namespace HMRC.IRMark.Generator
                     StringWriter sw = new StringWriter();
                     XmlTextWriter xw = new XmlTextWriter(sw);
                     body.WriteTo(xw);
-                    var bodyDoc = new XmlDocument();
-                    var test = sw.ToString();
-                    bodyDoc.LoadXml(test);
+                    var bodyDoc = new XmlDocument
+                    {
+                        PreserveWhitespace = true
+                    };
+                    var xml = sw.ToString();
+                    bodyDoc.LoadXml(xml);
                     return bodyDoc;
                 }
             }

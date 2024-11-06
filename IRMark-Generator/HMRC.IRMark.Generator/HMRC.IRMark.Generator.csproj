@@ -5,10 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiquidTechnologies.XmlObjects.Runtime" Version="20.7.17" />
     <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="CT-2014-v1-992.xsd">
+      <Generator>LxCodeGenerator</Generator>
+      <LastGenOutput>CT-2014-v1-992.cs</LastGenOutput>
+    </None>
     <None Update="sampleXml.xml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
