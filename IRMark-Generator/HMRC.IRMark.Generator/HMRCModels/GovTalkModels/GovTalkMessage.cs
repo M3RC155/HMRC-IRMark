@@ -13,7 +13,7 @@ namespace HMRC.IRMark.Generator.HMRCModels.GovTalkModels
     {
         /// <remarks/>
         /// minOccurs="1" maxOccurs="1"
-        public string EnvelopeVersion { get; set; }
+        public static string EnvelopeVersion => "2.0";
 
         /// <remarks/>
         /// minOccurs="1" maxOccurs="1"

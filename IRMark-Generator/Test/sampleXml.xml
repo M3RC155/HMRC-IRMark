@@ -12,11 +12,11 @@
 		</MessageDetails>
 		<SenderDetails>
 			<IDAuthentication>
-				<SenderID>Provided by the SDST</SenderID>
+				<SenderID>Xr9HHFA1rGx54uCdvgd2PP4RjiXi</SenderID>
 				<Authentication>
 					<Method>clear</Method>
 					<Role>Principal</Role>
-					<Value>Provided by the SDST</Value>
+					<Value>Xr9HHFA1rGx54uCdvgd2PP4RjiXi</Value>
 				</Authentication>
 			</IDAuthentication>
 		</SenderDetails>
@@ -39,84 +39,46 @@
 	<Body>
 		<IRenvelope xmlns="http://www.govtalk.gov.uk/taxation/CT/5">
 			<IRheader>
-				<Keys>
-					<Key Type="UTR">8596148860</Key>
-				</Keys>
-				<PeriodEnd>2022-03-31</PeriodEnd>
-				<DefaultCurrency>GBP</DefaultCurrency>
-				<Manifest>
-					<Contains>
-						<Reference>
-							<Namespace>http://www.govtalk.gov.uk/taxation/CT/5</Namespace>
-							<SchemaVersion>2022-v1.99</SchemaVersion>
-							<TopElementName>CompanyTaxReturn</TopElementName>
-						</Reference>
-					</Contains>
-				</Manifest>
-				<IRmark Type="generic">Enter IRmark here</IRmark>
-				<Sender>Company</Sender>
+				<PeriodEnd>1900-01-01</PeriodEnd>
+				<IRmark Type="SAonly">IRmark1</IRmark>
+				<Sender>Individual</Sender>
 			</IRheader>
-			<CompanyTaxReturn ReturnType="new">
+			<CompanyTaxReturn ReturnType="amended">
 				<CompanyInformation>
-					<CompanyName>Enter Company Name</CompanyName>
-					<RegistrationNumber>12345678</RegistrationNumber>
-					<Reference>8596148860</Reference>
-					<CompanyType>6</CompanyType>
+					<CompanyName>CompanyName1</CompanyName>
+					<Reference>1234567891</Reference>
+					<CompanyType>0</CompanyType>
 					<PeriodCovered>
-						<From>2021-04-01</From>
-						<To>2022-03-31</To>
+						<From>2015-04-01</From>
+						<To>1900-01-01</To>
 					</PeriodCovered>
 				</CompanyInformation>
 				<ReturnInfoSummary>
 					<Accounts>
-						<ThisPeriodAccounts>yes</ThisPeriodAccounts>
 					</Accounts>
 					<Computations>
-						<NoComputationsReason>Company in liquidation</NoComputationsReason>
+						<ThisPeriodComputations>yes</ThisPeriodComputations>
 					</Computations>
 				</ReturnInfoSummary>
-				<Turnover>
-					<Total>100000.00</Total>
-				</Turnover>
 				<CompanyTaxCalculation>
 					<Income>
-						<Trading>
-							<Profits>100000.00</Profits>
-							<LossesBroughtForward>0.00</LossesBroughtForward>
-							<NetProfits>100000.00</NetProfits>
-						</Trading>
 					</Income>
-					<ProfitsBeforeOtherDeductions>100000.00</ProfitsBeforeOtherDeductions>
-					<ChargesAndReliefs>
-						<ProfitsBeforeDonationsAndGroupRelief>100000.00</ProfitsBeforeDonationsAndGroupRelief>
-					</ChargesAndReliefs>
-					<ChargeableProfits>100000.00</ChargeableProfits>
-					<CorporationTaxChargeable>
-						<FinancialYearOne>
-							<Year>2021</Year>
-							<Details>
-								<Profit>100000.00</Profit>
-								<TaxRate>19.00</TaxRate>
-								<Tax>19000.00</Tax>
-							</Details>
-						</FinancialYearOne>
-					</CorporationTaxChargeable>
-					<CorporationTax>19000.00</CorporationTax>
-					<NetCorporationTaxChargeable>19000.00</NetCorporationTaxChargeable>
-					<TaxReliefsAndDeductions>
-						<TotalReliefsAndDeductions>0.00</TotalReliefsAndDeductions>
-					</TaxReliefsAndDeductions>
+					<ChargeableProfits Currency="EUR">0.00</ChargeableProfits>
+					<NetCorporationTaxChargeable Currency="EUR">0.00</NetCorporationTaxChargeable>
 				</CompanyTaxCalculation>
 				<CalculationOfTaxOutstandingOrOverpaid>
-					<NetCorporationTaxLiability>19000.00</NetCorporationTaxLiability>
-					<TaxChargeable>19000.00</TaxChargeable>
-					<TaxPayable>19000.00</TaxPayable>
+					<TaxPayable Currency="EUR">0.00</TaxPayable>
 				</CalculationOfTaxOutstandingOrOverpaid>
 				<Declaration>
 					<AcceptDeclaration>yes</AcceptDeclaration>
-					<Name>Test</Name>
-					<Status>Test</Status>
+					<Name>Name1</Name>
+					<Status>Status1</Status>
 				</Declaration>
+				<AttachedFiles>
+					<Attachment Description="Description1" Filename="Filename1" Format="pdf" Size="1" Type="other">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+					<Attachment Description="Description2" Filename="Filename2" Format="esef" Size="-79228162514264337593543950335" Type="amendment other">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+					<Attachment Description="Description3" Filename="Filename3" Format="pdf" Size="79228162514264337593543950335" Type="computations">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+				</AttachedFiles>
 			</CompanyTaxReturn>
 		</IRenvelope>
 	</Body>

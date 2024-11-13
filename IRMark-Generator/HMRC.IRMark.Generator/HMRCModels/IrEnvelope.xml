@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<IRenvelope xmlns="http://www.govtalk.gov.uk/taxation/CT/5">
+	<IRheader>
+		<PeriodEnd>1900-01-01</PeriodEnd>
+		<IRmark Type="SAonly">IRmark1</IRmark>
+		<Sender>Individual</Sender>
+	</IRheader>
+	<CompanyTaxReturn ReturnType="amended">
+		<CompanyInformation>
+			<CompanyName>CompanyName1</CompanyName>
+			<Reference>Reference</Reference>
+			<CompanyType>0</CompanyType>
+			<PeriodCovered>
+				<From>2015-04-01</From>
+				<To>1900-01-01</To>
+			</PeriodCovered>
+		</CompanyInformation>
+		<ReturnInfoSummary>
+			<Accounts>
+			</Accounts>
+			<Computations>
+				<ThisPeriodComputations>yes</ThisPeriodComputations>
+			</Computations>
+		</ReturnInfoSummary>
+		<CompanyTaxCalculation>
+			<Income>
+			</Income>
+			<ChargeableProfits Currency="EUR">0.00</ChargeableProfits>
+			<NetCorporationTaxChargeable Currency="EUR">0.00</NetCorporationTaxChargeable>
+		</CompanyTaxCalculation>
+		<CalculationOfTaxOutstandingOrOverpaid>
+			<TaxPayable Currency="EUR">0.00</TaxPayable>
+		</CalculationOfTaxOutstandingOrOverpaid>
+		<Declaration>
+			<AcceptDeclaration>yes</AcceptDeclaration>
+			<Name>Name1</Name>
+			<Status>Status1</Status>
+		</Declaration>
+		<AttachedFiles>
+			<Attachment Description="Description1" Filename="Filename1" Format="pdf" Size="1" Type="other">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+			<Attachment Description="Description2" Filename="Filename2" Format="esef" Size="-79228162514264337593543950335" Type="amendment other">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+			<Attachment Description="Description3" Filename="Filename3" Format="pdf" Size="79228162514264337593543950335" Type="computations">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+		</AttachedFiles>
+	</CompanyTaxReturn>
+</IRenvelope>

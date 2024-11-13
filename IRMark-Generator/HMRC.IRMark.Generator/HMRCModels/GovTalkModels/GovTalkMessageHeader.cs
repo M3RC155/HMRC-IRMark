@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace HMRC.IRMark.Generator.HMRCModels.GovTalkModels
 {
     /// <remarks/>
-    /// minOccurs="0" maxOccurs="1"
+    /// minOccurs="1" maxOccurs="1"
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/CM/envelope")]
     public class GovTalkMessageHeader

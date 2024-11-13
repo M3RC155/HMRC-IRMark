@@ -123,8 +123,6 @@ Thu Sep 28 12:10:12 BST 2023
           <gms:ProvidesDefinitionOf>YesNoType</gms:ProvidesDefinitionOf>
         </gms:Relation>
         <gms:Relation>
-			
-			
           <gms:ProvidesDefinitionOf>CTnominalShareValueStructure</gms:ProvidesDefinitionOf>
         </gms:Relation>
         <gms:Relation>

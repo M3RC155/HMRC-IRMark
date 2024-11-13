@@ -1,4 +1,5 @@
-﻿using HMRC.IRMark.Generator.HMRCModels.GovTalkModels.Types.MethodTypes;
+﻿using System;
+using HMRC.IRMark.Generator.HMRCModels.GovTalkModels.Types.MethodTypes;
 using System.Xml.Serialization;
 
 namespace HMRC.IRMark.Generator.HMRCModels.GovTalkModels.Types

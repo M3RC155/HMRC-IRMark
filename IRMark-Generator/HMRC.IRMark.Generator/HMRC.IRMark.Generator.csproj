@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="CT-2014-v1-992.xsd">
+    <None Update="HMRCModels\CT-2014-v1-992.xsd">
       <Generator>LxCodeGenerator</Generator>
       <LastGenOutput>CT-2014-v1-992.cs</LastGenOutput>
     </None>
