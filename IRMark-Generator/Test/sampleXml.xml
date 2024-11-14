@@ -3,81 +3,52 @@
 	<EnvelopeVersion>2.0</EnvelopeVersion>
 	<Header>
 		<MessageDetails>
-			<Class>HMRC-CT-CT600</Class>
-			<Qualifier>request</Qualifier>
-			<Function>submit</Function>
-			<CorrelationID/>
-			<Transformation>XML</Transformation>
-			<GatewayTest>1</GatewayTest>
+			<Class></Class>
+			<Qualifier></Qualifier>
 		</MessageDetails>
-		<SenderDetails>
-			<IDAuthentication>
-				<SenderID>Xr9HHFA1rGx54uCdvgd2PP4RjiXi</SenderID>
-				<Authentication>
-					<Method>clear</Method>
-					<Role>Principal</Role>
-					<Value>Xr9HHFA1rGx54uCdvgd2PP4RjiXi</Value>
-				</Authentication>
-			</IDAuthentication>
-		</SenderDetails>
 	</Header>
 	<GovTalkDetails>
-		<Keys>
-			<Key Type="UTR">8596148860</Key>
-		</Keys>
-		<TargetDetails>
-			<Organisation>HMRC</Organisation>
-		</TargetDetails>
-		<ChannelRouting>
-			<Channel>
-				<URI>Enter your 4 digit vendor ID</URI>
-				<Product>Enter your product details</Product>
-				<Version>Enter a version number</Version>
-			</Channel>
-		</ChannelRouting>
 	</GovTalkDetails>
 	<Body>
 		<IRenvelope xmlns="http://www.govtalk.gov.uk/taxation/CT/5">
 			<IRheader>
-				<PeriodEnd>1900-01-01</PeriodEnd>
-				<IRmark Type="SAonly">IRmark1</IRmark>
-				<Sender>Individual</Sender>
+				<PeriodEnd></PeriodEnd>
+				<IRmark Type=""></IRmark>
+				<Sender></Sender>
 			</IRheader>
-			<CompanyTaxReturn ReturnType="amended">
+			<CompanyTaxReturn ReturnType="">
 				<CompanyInformation>
-					<CompanyName>CompanyName1</CompanyName>
-					<Reference>1234567891</Reference>
-					<CompanyType>0</CompanyType>
+					<CompanyName></CompanyName>
+					<Reference></Reference>
+					<CompanyType></CompanyType>
 					<PeriodCovered>
-						<From>2015-04-01</From>
-						<To>1900-01-01</To>
+						<From></From>
+						<To></To>
 					</PeriodCovered>
 				</CompanyInformation>
 				<ReturnInfoSummary>
 					<Accounts>
 					</Accounts>
 					<Computations>
-						<ThisPeriodComputations>yes</ThisPeriodComputations>
+						
 					</Computations>
 				</ReturnInfoSummary>
 				<CompanyTaxCalculation>
 					<Income>
 					</Income>
-					<ChargeableProfits Currency="EUR">0.00</ChargeableProfits>
-					<NetCorporationTaxChargeable Currency="EUR">0.00</NetCorporationTaxChargeable>
+					<ChargeableProfits Currency=""></ChargeableProfits>
+					<NetCorporationTaxChargeable Currency=""></NetCorporationTaxChargeable>
 				</CompanyTaxCalculation>
 				<CalculationOfTaxOutstandingOrOverpaid>
-					<TaxPayable Currency="EUR">0.00</TaxPayable>
+					<TaxPayable Currency=""></TaxPayable>
 				</CalculationOfTaxOutstandingOrOverpaid>
 				<Declaration>
-					<AcceptDeclaration>yes</AcceptDeclaration>
-					<Name>Name1</Name>
-					<Status>Status1</Status>
+					<AcceptDeclaration></AcceptDeclaration>
+					<Name></Name>
+					<Status></Status>
 				</Declaration>
 				<AttachedFiles>
-					<Attachment Description="Description1" Filename="Filename1" Format="pdf" Size="1" Type="other">AAECAwQFBgcICQoLDA0ODw==</Attachment>
-					<Attachment Description="Description2" Filename="Filename2" Format="esef" Size="-79228162514264337593543950335" Type="amendment other">AAECAwQFBgcICQoLDA0ODw==</Attachment>
-					<Attachment Description="Description3" Filename="Filename3" Format="pdf" Size="79228162514264337593543950335" Type="computations">AAECAwQFBgcICQoLDA0ODw==</Attachment>
+					<Attachment Description="" Filename="" Format="" Size="" Type=""></Attachment>
 				</AttachedFiles>
 			</CompanyTaxReturn>
 		</IRenvelope>

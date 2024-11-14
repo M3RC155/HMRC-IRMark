@@ -1,11 +1,11 @@
 ﻿using System.Xml.Serialization;
+using System;
 namespace HMRC.IRMark.Generator.IrEnvelope
 {
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     [XmlRoot(Namespace = "http://www.govtalk.gov.uk/taxation/CT/5", IsNullable = false)]
     public class IRenvelope
@@ -18,14 +18,13 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class IRheader
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime PeriodEnd { get; set; }
+        [XmlElement(DataType = "date")]
+        public DateTime PeriodEnd { get; set; }
 
         /// <remarks/>
         public IRmark IRmark { get; set; }
@@ -35,24 +34,22 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class IRmark
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Type { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public string Value { get; set; }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class CompanyTaxReturn
     {
         /// <remarks/>
@@ -71,18 +68,17 @@ namespace HMRC.IRMark.Generator.IrEnvelope
         public Declaration Declaration { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Attachment", IsNullable = false)]
+        [XmlArrayItem("Attachment", IsNullable = false)]
         public Attachment[] AttachedFiles { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string ReturnType { get; set; }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class CompanyInformation
     {
         /// <remarks/>
@@ -99,24 +95,22 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class PeriodCovered
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime From { get; set; }
+        [XmlElement(DataType = "date")]
+        public DateTime From { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime To { get; set; }
+        [XmlElement(DataType = "date")]
+        public DateTime To { get; set; }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class ReturnInfoSummary
     {
         /// <remarks/>
@@ -127,9 +121,8 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class Computations
     {
         /// <remarks/>
@@ -137,9 +130,8 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class CompanyTaxCalculation
     {
         /// <remarks/>
@@ -153,39 +145,36 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class ChargeableProfits
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Currency { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public decimal Value { get; set; }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class NetCorporationTaxChargeable
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Currency { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public decimal Value { get; set; }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class CalculationOfTaxOutstandingOrOverpaid
     {
         /// <remarks/>
@@ -193,24 +182,22 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class CalculationOfTaxOutstandingOrOverpaidTaxPayable
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Currency { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public decimal Value { get; set; }
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class Declaration
     {
         /// <remarks/>
@@ -224,33 +211,32 @@ namespace HMRC.IRMark.Generator.IrEnvelope
     }
 
     /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.govtalk.gov.uk/taxation/CT/5")]
     public class Attachment
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Description { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Filename { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Format { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
+        [XmlAttribute(DataType = "integer")]
         public string Size { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Type { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public string Value { get; set; }
     }
 }
